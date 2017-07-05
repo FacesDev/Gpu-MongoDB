@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./styles.css" />
+        
+    </head>
+    <body>
+        <a href='/new-collection'>Add new GPU Brah</a>
+
+        </p>_____________GPUS_____________</p>
+ {{#gpus}}
+<form class="gpu-container" method="post" action="/delete/{{id}}">
+            
+            
+  
+       
+       <p> ___________________________</p>
+        <p><b>Name: {{name}}</b></p>
+        <p>Manufacturer: {{manufacturer}}</p>
+        <p>Hash Rate: {{averageHashRateMhz}}</p>
+        {{#alternates}}
+        <p>nVidia: {{nvidia}}</p>
+        <p>AMD: {{amd}}</p>
+        <p>Other: {{other}}</p>
+        {{/alternates}}
+        <a href="/edit/:{{_id}}">Edit This Entry</a>
+        <button type="submit">Delete</button>
+    
+        {{/gpus}}
+        </form>
+
+
+
+
+    </body>
+</html>
