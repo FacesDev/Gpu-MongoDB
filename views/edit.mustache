@@ -3,10 +3,10 @@
         
     </head>
 <body>
-    
+
     <form method="POST" actions='/edit/{{_id}}'>
-    
-         <input type"text" name="name" placeholder="GPU Name"/>
+         <p>{{name}}</p>
+         <input type"text" name="name" value="{{name}}"/>
          <input type"text" name="manufacturer" placeholder="Manufacturer"/>
          <input type"number" name="avg" placeholder="Average Megahash Rate"/>
          <input type"number" name="peak" placeholder="Peak MegaHash Rate"/>
@@ -17,6 +17,7 @@
          <input type"text" name="other" placeholder="Other Alt"/>
          <button type="submit">Add to List</button>
 </form>
+
 
 </body>
 </html>

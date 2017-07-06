@@ -40,13 +40,22 @@ application.post('/new-collection', async (request, response) => {
     response.redirect('/');
 });
 
-application.get('/edit/:_id', (request, response) => {
-    response.render('edit');
+application.get('/edit/:_id', async (request, response) => {
+    console.log('id: ', request.params._id)
+    //  var id = request.params._id (returns with a ":" infront of id...)
+    var id = '595d60ada778ba787dabf529';
+     var gpu = await Gpu.find({_id: id});
+     console.log('id:: ', id);
+     console.log('gpu: ', gpu);
+    response.render('edit', gpu);
 });
 
-application.post('/edit/:_Id', async (request, response) => {
-    var id = request.params._Id
-   await Gpu.updateOne({ _id: id },
+application.post('/edit/:_id', async (request, response) => {
+    
+    // var id = request.params._id (returns with a ":" infront of id...)
+    console.log('id: ', id);
+    var id = '595d60ada778ba787dabf529';
+    await Gpu.updateOne({_id: id },
         {
             name: request.body.name,
             manufacturer: request.body.manufacturer,
@@ -61,6 +70,7 @@ application.post('/edit/:_Id', async (request, response) => {
 
 application.post('/delete/:_Id', async (request, response) => {
     var id = request.params._Id;
+    console.log('id: ', id);
     var result = await Gpu.deleteOne({ _id: id });
     response.redirect('/');
 });
