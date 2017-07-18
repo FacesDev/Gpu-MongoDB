@@ -62,7 +62,6 @@ application.post('/edit/:_id', async (request, response) => {
     var id = request.params._id
     console.log('id 2: ', id);
     var check = id.replace(/:/g, "");
-    // var id = '595e4e4193103c066610789b';
     await Gpu.updateOne({_id: check},
         {
             name: request.body.name,
