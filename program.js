@@ -17,6 +17,7 @@ async function getGpu() {
 }
 
 application.get('/', async (request, response) => {
+    console.log('here');
     var collections = await getGpu();
     var model = { gpus: collections };
     response.render('index', model);
@@ -27,6 +28,7 @@ application.get('/new-collection', (request, response) => {
 });
 
 application.post('/new-collection', async (request, response) => {
+    console.log('here post');
     var newGpu = await new Gpu({
         name: request.body.name,
         manufacturer: request.body.manufacturer,
@@ -40,22 +42,28 @@ application.post('/new-collection', async (request, response) => {
     response.redirect('/');
 });
 
-application.get('/edit/:_id', async (request, response) => {
-    console.log('id: ', request.params._id)
-    //  var id = request.params._id (returns with a ":" infront of id...)
-    var id = '595d60ada778ba787dabf529';
-     var gpu = await Gpu.find({_id: id});
+application.get('/edit/:_Id', async (request, response) => {
+    
+    console.log('id params: ', request.params._Id);
+     var id = request.params._Id;
+     var check = id.replace(/:/g, "");
+     console.log('check: ', check);
+     console.log('id before string: ', id);
+    // var id = '595e4e4193103c066610789b';
+     var gpu = await Gpu.find({_id: check});
      console.log('id:: ', id);
      console.log('gpu: ', gpu);
-    response.render('edit', gpu);
+     var model = {gpu: gpu};
+    response.render('edit', model);
 });
 
 application.post('/edit/:_id', async (request, response) => {
     
-    // var id = request.params._id (returns with a ":" infront of id...)
-    console.log('id: ', id);
-    var id = '595d60ada778ba787dabf529';
-    await Gpu.updateOne({_id: id },
+    var id = request.params._id
+    console.log('id 2: ', id);
+    var check = id.replace(/:/g, "");
+    // var id = '595e4e4193103c066610789b';
+    await Gpu.updateOne({_id: check},
         {
             name: request.body.name,
             manufacturer: request.body.manufacturer,

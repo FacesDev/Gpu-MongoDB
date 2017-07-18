@@ -6,21 +6,25 @@
 </head>
 
 <body>
-    <a href='/new-collection'>Add new GPU Brah</a>
-
-    </p>_____________GPUS_____________</p>
+    <div class="nav_wrap">
+    <a class="gpu_button" href='/new-collection'>Add new GPU</a>
+    </div>
+    <div class="wrapper">
+    
     {{#gpus}}
     <form class="gpu-container" method="POST" action="/delete/{{id}}">
-        <p> ___________________________</p>
-        <p><b>Name: {{name}}</b></p>
-        <p>Manufacturer: {{manufacturer}}</p>
-        <p>Hash Rate: {{averageHashRateMhz}}</p>
+        <p class="main" >Name: {{name}}</p>
+        <p class="main" >Manufacturer: {{manufacturer}}</p>
+        <p class="main" >Hash Rate: {{averageHashRateMhz}}</p>
         {{#alternates}}
+        <h3>Alternates: </h3>
         <p>nVidia: {{nvidia}}</p>
         <p>AMD: {{amd}}</p>
         <p>Other: {{other}}</p>
         {{/alternates}}
-        <a href="/edit/:{{_id}}">Edit This Entry</a>
+        <div class="nav_wrap">
+        <a class="gpu_button" href="/edit/{{_id}}">Edit This Entry</a>
+        </div>
         <button type="submit">Delete</button>
        
     </form>
@@ -28,7 +32,7 @@
 
 
 
-
+</div>
 </body>
 
 </html>
